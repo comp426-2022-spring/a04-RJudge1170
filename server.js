@@ -25,6 +25,11 @@ if (args.help || args.h) {
     process.exit(0)
 }
 
+var md5 = require("md5")
+
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
 const express = require('express')
 const req = require('express/lib/request')
 const app = express()
