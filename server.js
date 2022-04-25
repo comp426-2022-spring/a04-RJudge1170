@@ -139,7 +139,8 @@ app.get('/app', (req, res) => {
 })
 
 app.get('/app/log/access', (req, res) => {
-    res.status(200).json(logdb.prepare('SELECT * FROM acceslog').all())
+    const out = logdb.prepare('SELECT * FROM accesslog').all()
+    res.status(200).json(out)
 })
 
 app.get('/app/echo/:number', express.json(), (req, res) => {
