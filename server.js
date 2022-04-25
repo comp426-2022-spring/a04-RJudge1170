@@ -31,6 +31,8 @@ const express = require('express')
 const req = require('express/lib/request')
 const app = express()
 
+var logdb = require("./database.js")
+
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
