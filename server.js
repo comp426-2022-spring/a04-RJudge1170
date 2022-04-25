@@ -25,8 +25,6 @@ if (args.help || args.h) {
     process.exit(0)
 }
 
-import { logdb } from './database.js';
-
 var md5 = require("md5")
 
 const express = require('express')
