@@ -138,6 +138,10 @@ app.get('/app', (req, res) => {
     res.status(200).end('OK')
 })
 
+app.get('/app/log/access', (req, res) => {
+    res.status(200).json(logdb.prepare('SELECT * FROM acceslog').all())
+})
+
 app.get('/app/echo/:number', express.json(), (req, res) => {
     res.status(200).json({ 'message' : req.params.number })
 })
