@@ -129,6 +129,26 @@ const WRITESTREAM = fs.createWriteStream('FILE', { flags: 'a' })
 // Set up the access logging middleware
 app.use(morgan('FORMAT', { stream: WRITESTREAM }))
 
+const mylog = function(req, res, next) {
+    let theLog = {
+
+        remoteaddr: req.ip,
+        remoteuser: req.user,
+        time: Date.now(),
+        url: req.url,
+        protocol: req.protocol,
+        httpversion: req.httpVersion,
+        status: req.statusCode,
+        referer: req.headers['referer'],
+        useragent: req.headers['user-agent']
+
+    }
+
+    const logit = logdb.prepare('INSERT INTO accesslog (remoteaddr, remoteuser, time, url, protocol, httpversion, status, referer, useragent) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)');
+    const runit = logit.run(theLog.remoteaddr, theLog.remoteuser, theLog.time, theLog.url, theLog.protocol, theLog.httpversion, theLog.status, theLog.referer, theLog.useragent);
+    next();
+}
+
 app.get('/app/error', (req, res) => {
   throw new Error('Error test successful.')
 })
