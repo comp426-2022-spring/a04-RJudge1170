@@ -50,7 +50,7 @@ const logging = (req, res, next) => {
 
 args["port"]
 
-const port = args.port || 5000
+const port = args.port || 5555
 
 const server = app.listen(port, () => {
     console.log('App is running on port %PORT%'.replace('%PORT%', port))
