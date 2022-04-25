@@ -125,7 +125,7 @@ function flipACoin(call) {
 
 // Use morgan for logging to files
 // Create a write stream to append (flags: 'a') to a file
-const WRITESTREAM = fs.createWriteStream('access.log', { flags: 'a' })
+const WRITESTREAM = fs.createWriteStream('accesslog', { flags: 'a' })
 // Set up the access logging middleware
 app.use(morgan('combined', { stream: WRITESTREAM }))
 
