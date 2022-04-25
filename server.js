@@ -129,6 +129,9 @@ const WRITESTREAM = fs.createWriteStream('FILE', { flags: 'a' })
 // Set up the access logging middleware
 app.use(morgan('FORMAT', { stream: WRITESTREAM }))
 
+app.get('/app/error', (req, res) => {
+  throw new Error('Error test successful.')
+})
 
 app.get('/app', (req, res) => {
     res.type('text/plain')
