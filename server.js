@@ -144,8 +144,8 @@ app.use( (req, res, next) => {
 
     }
 
-    const logit = logdb.prepare('INSERT INTO accesslog (remoteaddr, remoteuser, time, url, protocol, httpversion, status, referer, useragent) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)');
-    const runit = logit.run(theLog.remoteaddr, theLog.remoteuser, theLog.time, theLog.url, theLog.protocol, theLog.httpversion, theLog.status, theLog.referer, theLog.useragent);
+    const logit = logdb.prepare('INSERT INTO accesslog (remote_addr, remote_user, datetime, url, http_version, status, referrer_url, user_agent) VALUES (?, ?, ?, ?, ?, ?, ?, ?)');
+    const runit = logit.run(theLog.remoteaddr, theLog.remoteuser, theLog.time, theLog.url, theLog.httpversion, theLog.status, theLog.referer, theLog.useragent);
     next();
 });
 
@@ -191,6 +191,6 @@ app.get('/app/flip/call/:call', (req, res) => {
 })
 
 app.use(function(req, res) {
-    res.status(404).send("Endpoint does not exist")
     res.type("text/plain")
+    res.status(404).send("Endpoint does not exist")
 })
